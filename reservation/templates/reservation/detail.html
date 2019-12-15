@@ -1,0 +1,17 @@
+<header>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</header>
+
+<body>
+    <div class="container">
+        <h1> {{reservation.room_type}} </h1>
+        <p> 예약날짜  {{reservation.room_date}} </p>
+        <p> 시작시간  {{reservation.room_start_time}} </p>
+        <p> 종료시간  {{reservation.room_finish_time}} </p>
+        <br><br>
+
+        <a href="{% url 'home' %}"><button type="button" class="btn btn-danger">HOME</button></a>
+        <a href="{% url 'edit' reservation.id %}"><button type="button" class="btn btn-danger">EDIT</button></a>
+        <a href="{% url 'delete' reservation.id %}"><button type="button" class="btn btn-danger">DELETE</button></a>
+    </div>
+</body>

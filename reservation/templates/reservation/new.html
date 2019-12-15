@@ -1,0 +1,44 @@
+<header>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</header>
+
+<body>
+    {% comment %} 부트스트랩을 활용하여 손쉽게 만들기 {% endcomment %}
+    <div class="container">
+        <form action="{% url 'create' %}"> 
+            <div class="input-group mb-3" style="width:21em;">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">스터디룸</label>
+            </div>
+            <select name="room_type" class="custom-select" id="inputGroupSelect01">
+                <option selected>스터디룸을 선택해주세요</option>
+                <option value="1A">1A</option>
+                <option value="1B">1B</option>
+                <option value="3B">3A</option>
+            </select>
+            </div>
+            <div class="input-group flex-nowrap" style="width:21em;">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping">예약날짜</span>
+                </div>
+                <input type="date" name="room_date" class="form-control" placeholder="연도-월-일" aria-label="Username" aria-describedby="addon-wrapping" data-date-inline-picker="true" min="" max="">
+            </div>
+
+            <div class="input-group flex-nowrap" style="width:21em;">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping">시작시간</span>
+                </div>
+                <input type="time" name="room_start_time" class="form-control" placeholder="오전 09:00" aria-label="Username" aria-describedby="addon-wrapping" data-date-inline-picker="true" min="" max="">
+            </div>
+
+            <div class="input-group flex-nowrap" style="width:21em;">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping">종료시간</span>
+                </div>
+                <input type="time" name="room_finish_time" class="form-control" placeholder="오후 09:00" aria-label="Username" aria-describedby="addon-wrapping" data-date-inline-picker="true" min="" max="">
+            </div>
+
+            <button type="submit" class="btn btn-danger">예약</button>
+        </form>
+    </div>
+</body>
