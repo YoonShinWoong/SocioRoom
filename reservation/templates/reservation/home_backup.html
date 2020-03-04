@@ -1,0 +1,43 @@
+<header>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">     
+</header>
+
+<body>
+    {% comment %} 부트스트랩을 활용하여 손쉽게 만들기 {% endcomment %}
+    <div class="container">
+        {% if user.is_authenticated %}
+            <a class="nav-link" style="color:black;">{{user.profile.realname}}님! 환영합니다 </a>
+            <a href="{% url 'myreservation' %}"> 내 예약 확인하기</a> <a href="{% url 'home' %}">HOME</a>
+            <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+            <form id="logout" method="POST" action="{% url 'logout' %}">
+                {% csrf_token %} <input type="hidden" />
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">로그인</a>  
+            <a href="{% url 'signup' %}">회원가입</a>
+        {% endif %}
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col" style="width:20%"">Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% comment %} 파이썬 문법을 사용해주기 위해서는 {% %} 기호 사용 {% endcomment %}
+            {% comment %} for 문 반복문을 통해 view 에서 넘겨준 객체를 사용한다 {% endcomment %}
+            {% for reservation in reservations.all %}
+                <tr>
+                {% comment %} 객체 안의 데이터에 접근하기 위해서는 '.' 을 활용한다 {% endcomment %}
+                <th scope="row">{{reservation.id}}</th>
+                <td><a href="{%url 'detail' reservation.id%}">{{reservation.id}}</a></td>
+                <td>{{reservation.pub_date}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'new' %}"><button type="button" class="btn btn-danger">예약하기</button></a>
+    </div>
+</body>

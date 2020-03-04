@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'reservation.apps.ReservationConfig', # Reservation App
+    'accounts.apps.AccountsConfig', # Account
 ]
 
 MIDDLEWARE = [
@@ -118,4 +119,15 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# EMAIL 설정
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'tlsdnd3421@gmail.com'
+EMAIL_HOST_PASSWORD = 'aktmxj12'
+SERVER_EMAIL = 'tlsdnd3421@gmail.com'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
