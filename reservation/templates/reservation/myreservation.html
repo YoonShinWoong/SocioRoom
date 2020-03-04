@@ -38,6 +38,10 @@
                         <td>{{reservation.room_type}}</td>
                     </tr>
                     <tr>
+                        <th>예약 날짜</th>
+                        <td>{{reservation.room_date | date:'Y-m-d' }} {{reservation.room_date | date:"D" }}</td>
+                    </tr>
+                    <tr>
                         <th>예약 시간</th>
                         <td>{{reservation.room_start_time}}</td>
                     </tr>
@@ -46,12 +50,29 @@
                         <td>{{reservation.room_finish_time}}</td>
                     </tr>
                 </table>
+                <div style="text-align: center; margin-top: 0.5em;"> <a href="{% url 'delete' reservation.id %}"><button id="room_return">반납</button></a> </div>
             </div>
             {% endfor %}
-            <button class="btn_return">반납</button>
         </section>
         
     </main>
     <script src="{% static 'reservation/main.js' %}"></script>
 </body>
+
+<style>
+    #room_return{
+        width: 70px;
+        height: 35px;
+        bottom: 15vh;
+        background: rgba(218,33,39);
+        font-size: 1em;
+        color: rgb(225,225,225);
+        border: none;
+        border-radius: 3px;
+    }
+    
+    #room_return:hover{
+        cursor: pointer;
+    }
+    </style>
 </html>

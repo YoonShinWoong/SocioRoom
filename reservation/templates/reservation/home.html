@@ -41,10 +41,10 @@
             <div class="chart_div" onclick="goNew1A()" style="cursor:pointer;">
                 <canvas id="chart_1" width="7vw" height="7vh"></canvas>
             </div>
-            <div class="chart_div" onclick="goNew3A()" style="cursor:pointer;">
+            <div class="chart_div" onclick="goNew1B()" style="cursor:pointer;">
                 <canvas id="chart_2" width="7vw" height="7vh"></canvas>
             </div>
-            <div class="chart_div" onclick="goNew3B()" style="cursor:pointer;">
+            <div class="chart_div" onclick="goNew3A()" style="cursor:pointer;">
                 <canvas id="chart_3" width="7vw" height="7vh"></canvas>
             </div>
         </section>
@@ -70,57 +70,28 @@
             </div>
         </section>
     </main>
+    <footer>
+        <img src="{% static 'reservation/footer_logo.png' %}" alt="footer_logo" />
+        <span class="contact">
+                <a href="#" target="_blank"><img src="{% static 'reservation/kakao.png' %}" alt="kakao" class="kakao"/></a>
+            <a href="https://www.instagram.com/knu_highlight/?hl=ko" target="_blank"><img src="{% static 'reservation/instagram.png' %}" alt="instagram" class="insta" /></a>
+        </span>
+        <p>사회과학대학 Tel: 053-950-5202~4</p>
+        <p>멋쟁이 사자처럼</p>
+        <p class="copyright">Copyright(c) Kyungpook National University. All rights reserved.</p>
+    </footer>
     <script src="{% static 'reservation/main.js' %}"></script>
     <script>
         // New 페이지 이동
         function goNew1A(){
             location.href="/reservation/new/1A";
         }
+        function goNew1B(){
+            location.href="/reservation/new/1B";
+        }
         function goNew3A(){
             location.href="/reservation/new/3A";
         }
-        function goNew3B(){
-            location.href="/reservation/new/3B";
-        }
-        new Chart(document.getElementById("chart_1"),
-            {
-                "type":"doughnut",
-                "data":{
-                    "datasets":[
-                        {
-                            "data":[1, 2],
-                            "backgroundColor":["rgba(255, 205, 86)","rgba(79, 81, 81, .3)"],
-                            "borderWidth": 0.3
-                        },
-                    ]
-                }
-            });
-        new Chart(document.getElementById("chart_2"),
-            {
-                "type":"doughnut",
-                "data":{
-                    "datasets":[
-                        {
-                            "data":[2, 1],
-                            "backgroundColor":["rgba(255, 99, 132)","rgba(79, 81, 81, .3)"],
-                            "borderWidth": 0.3
-                        }
-                    ]
-                }
-            });
-        new Chart(document.getElementById("chart_3"),
-            {
-                "type":"doughnut",
-                "data":{
-                    "datasets":[
-                        {
-                            "data":[1, 3],
-                            "backgroundColor":["rgba(54, 162, 235)","rgba(79, 81, 81, .3)"],
-                            "borderWidth": 0.3
-                        }
-                    ]
-                }
-            });
     </script>
 </body>
 </html>

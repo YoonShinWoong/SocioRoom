@@ -2,7 +2,10 @@
     margin: 0;
     padding: 0;
 }
-
+body{
+    width: 100vw;
+    background: rgb(246,246,246);
+}
 /* signin*/
 body.sign_bg{
     background:  rgba(218, 33, 39);
@@ -13,10 +16,6 @@ body.sign_bg{
     /* justify-content: center; */
     align-items: center;
     margin-top: 150px;
-}
-body{
-    width: 100vw;
-    background: rgb(246,246,246);
 }
 body.sign_bg>header>#signlogo{
     margin-bottom: 20px;
@@ -37,7 +36,7 @@ body.sign_bg>main>#sign_inputs{
 }
 body.sign_bg>main>#sign_inputs input{
     display: block;
-    width: 290px;
+    width: 250px;
     line-height: 1.5;
     padding: 5px 20px;
     margin: .8px;
@@ -141,7 +140,7 @@ header>.sidenav {
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
-}
+  }
 header>.sidenav a{
     text-decoration: none;
     font-size: 20px;
@@ -245,6 +244,11 @@ main>#main_post>.main_post_item li:hover{
     text-decoration: underline;
     cursor: pointer;
 }
+@media (min-width: 700px){
+    main{
+        height: 68vh;
+    }
+}
 @media (max-width: 700px){
     main>#main_post{
         display: block;
@@ -252,6 +256,83 @@ main>#main_post>.main_post_item li:hover{
     main>#main_post>.main_post_item{
         margin-top: 10px;
     }
+}
+/* reserve */
+main>#reserve{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    margin-top: 50px;
+}
+main>#reserve>.buttons{
+    display: block;
+    margin-bottom: 20px;
+}
+main>#reserve>.buttons button{
+    width: 50px;
+    height: 28px;
+    background: rgba(255, 205, 86);
+    color: white;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+main>#reserve>.buttons button:nth-child(2){
+    background: rgba(255, 99, 132);
+}
+main>#reserve>.buttons button:nth-child(3){
+    background: rgba(54, 162, 235);
+}
+main>#reserve>.buttons button:focus{
+    outline: none;
+}
+main>#reserve p{
+    margin-bottom: 3px;
+}
+main>#reserve p>select{
+    width: 100px;
+    height: 30px;
+}
+main>#reserve p>select:focus{
+    outline: none;
+}
+/* reserve_all */
+main>#reserve_all{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    margin-top: 20px;
+}
+main>#reserve_all>h3{
+    margin-bottom: 10px;
+}
+main>#reserve_all>table{
+    border: 1px solid rgb(0, 0, 0);
+    text-align: center;
+}
+main>#reserve_all th{
+    border-bottom: 1px solid rgb(0, 0, 0);
+    border-right: 1px solid rgb(0, 0, 0);
+    height: 30px;
+    background: rgba(79, 81, 81, .8);
+    color: white;
+}
+main>#reserve_all td{
+    width: 80px;
+    height: 20px;
+    border-bottom: 1px dotted rgb(0, 0, 0);
+    border-right: 1px solid rgb(0, 0, 0);
+    font-size: 14px;
+}
+main>#reserve_all td:nth-child(1){
+    width: 120px;
+    background: rgba(79, 81, 81, .6);
+    color: white;
+}
+main>#reserve_all td:nth-child(6), main>#reserve_all th:nth-child(6){
+    border-right: none;
 }
 /* mypage */
 main>#reserved_mypage{
@@ -348,4 +429,37 @@ main>.post_wrap>.post li:hover{
         margin-top: 10px;
         margin: 30px auto;
     }
+}
+/* footer */
+footer{
+    width: 100vw;
+    height: 15vh;
+    padding: 12px 8vw;
+    box-sizing: border-box;
+    position: relative;
+    bottom: 0;
+    background: rgba(79, 81, 81, .8);
+    color: rgba(255, 255, 255, .8);
+}
+footer>.contact{
+    position: absolute;
+    right: 10vw;
+}
+footer>.contact>a{
+    text-decoration: none;
+}
+footer>.contact>a img{
+    width: 30px;
+    height: 30px;
+}
+footer>.contact>a .kakao{
+    margin-right: 10px;
+}
+footer>p{
+    font-size: 14px;
+    line-height: 1.2;
+}
+footer .copyright{
+    font-size: 11px;
+    color: rgba(255, 255, 255, .5);
 }
