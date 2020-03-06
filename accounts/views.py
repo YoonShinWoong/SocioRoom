@@ -37,7 +37,8 @@ def signup(request):
             mail_to = request.POST["email"] + "@knu.ac.kr" # 학교 웹메일
             email = EmailMessage(mail_title, message, to=[mail_to])
             email.send()
-            return redirect("home")
+            msg = mail_to + " 주소로 인증 메일을 발송하였습니다. " + "인증 후 이용해주세요."
+            return render(request, 'reservation/home.html', {'msg':msg})
 
     # 포스트 방식 아니면 페이지 띄우기
     return render(request, 'accounts/signup.html')

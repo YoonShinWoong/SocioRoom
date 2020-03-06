@@ -36,7 +36,7 @@ body.sign_bg>main>#sign_inputs{
 }
 body.sign_bg>main>#sign_inputs input{
     display: block;
-    width: 250px;
+    width: 290px;
     line-height: 1.5;
     padding: 5px 20px;
     margin: .8px;

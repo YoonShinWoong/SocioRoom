@@ -16,8 +16,9 @@
     </header>
     <main>
         <section id="sign_inputs">
-            <form action="">
-                <select id="major">
+            <form action="{% url 'signup' %}" method="POST">
+                {% csrf_token %}
+                <select id="major" name="department" style="padding-left: 15px;">
                     <option value="소속학과">소속학과</option>
                     <option value="정치외교학과">정치외교학과</option>
                     <option value="사회학과">사회학과</option>
@@ -27,12 +28,17 @@
                     <option value="사회복지학부">사회복지학부</option>
                     <option value="신문방송학과">신문방송학과</option>
                 </select>
-                <input type="text" name="student_id" id="student_id" placeholder="학      번">
-                <input type="text" name="student_name" id="student_name" placeholder="이      름">
+                <input type="text" name="realname" id="student_name" placeholder="이      름">
+                <input type="text" name="username" id="student_id" placeholder="학      번">
+                
                 <div class="signup">
-                    <input type="text" name="id" id="id" placeholder="아 이 디">
-                    <input type="password" name="password" id="password" placeholder="비밀번호">
-                    <input type="password" name="confirm_password" id="confirm_password" placeholder="비밀번호 확인">
+                    <input type="password" name="password1" id="password" placeholder="비밀번호">
+                    <input type="password" name="password2" id="confirm_password" placeholder="비밀번호 확인">
+                    <br>
+                    <span style="color:white; font-size:0.88em;">인증 메일을 발송할 웹메일 ID를 입력해주세요<br>(통합정보시스템 ID와 동일합니다) </span>
+                    <br/>
+                    <input type="text" name="email" id="id" placeholder="학교 웹메일 ID" style="width:150px; display:table-column-group"><span style="color:white;"> @ </span><input name="email" type="email" value="knu.ac.kr" style="width:110px; display:table-column-group" disabled>
+                
                     <button class="sign_btn">회원가입</button>
                     <!-- <input type="button" value="회원가입" class="sign_btn"> -->
                 </div>
@@ -41,3 +47,8 @@
         </section>
     </main>
 </body>
+<style>
+    body.sign_bg>main>#sign_inputs input{
+        width:290px;
+    }
+</style>

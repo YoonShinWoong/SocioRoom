@@ -1,10 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Reservation
+from .models import Reservation, Blog
 from django.utils import timezone
 from datetime import datetime, timedelta
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 import json
+
+# library function
+def myrange(start, end, step):
+    r = start
+    while(r<end):
+        yield r
+        r += step
 
 ########################## C
 @login_required
@@ -12,14 +19,39 @@ def new(request,room_type):
     # 요일 가져오기
     today =  datetime.now()
     today_day = today.weekday()
-
     weekday_mark = 0
+    # 6 -> +1
+    # 5 -> +2
+    # 4 -> -4
+    # 3 -> -3 
+
+    # 평일의 경우
+    if today_day < 5:
+        start_day = today -timedelta(days=today_day) # 시작 월요일 
+        start_day_diff = 0 - today_day # 차이 넣기 
+
     # 토, 일 경우 -> 다음주와 돌아오는 그 다음주까지 예약가능
-    if today_day>=5:
+    elif today_day>=5:
+        start_day_diff = 7-today_day # 차이
         weekday_mark = 7-today_day # 주말차이 표시
+        start_day = today +timedelta(weekday_mark)
         today_day -= 7
-    date_diff = 4-today_day
-    return render(request, 'reservation/new.html', {'room_type':room_type, 'date_diff':date_diff, 'weekday_mark':weekday_mark})
+    date_diff = 4-today_day # 마지막 날짜
+
+    # 현재 예약 상황 넘겨 주기
+    reservations = Reservation.objects.all()
+    day_list = []
+    
+    # 월~금
+    for i in range(0,5):
+        day = start_day + timedelta(days=i) # 요일 증가
+        reservations_day = reservations.filter(room_type=room_type, user=request.user.username, room_date=day).order_by('room_start_time')
+        temp_list = []
+        for res in reservations_day:
+            temp_list.extend(myrange(res.room_start_time, res.room_finish_time, 0.5))
+        day_list.append(temp_list) # 요일 추가
+
+    return render(request, 'reservation/new.html', {'room_type':room_type, 'date_diff':date_diff, 'weekday_mark':weekday_mark, 'day_list':day_list, 'start_day_diff':start_day_diff})
 
 # ajax 통신
 def check(request):
@@ -32,7 +64,7 @@ def check(request):
     reserve_date = datetime.strptime(room_date_vr, "%Y-%m-%d ").date()
     check_error = 0 # 정상
 
-    print(room_type_vr, room_date_vr, room_start_time_vr, room_finish_time_vr)
+    # print(room_type_vr, room_date_vr, room_start_time_vr, room_finish_time_vr)
 
     # 하루 2건 검사
     if reservations.filter(user=request.user.username, room_date=reserve_date).count() >= 2:
@@ -98,15 +130,15 @@ def create(request):
 
 ########################## R
 def home(request):
-    reservations = Reservation.objects # 객체 묶음 가져오기
-    return render(request, 'reservation/home.html', {'reservations':reservations})
-    # render라는 함수를 통해 페이지를 띄워줄 건데, home.html 파일을 띄워줄 것이고 
-    # 이 때, reservations 객체도 함께 넘겨주도록 하겠다.
+    blog_list = Blog.objects.order_by('-pub_date') # 객체 묶음 가져오기
+    blogs = blog_list[0:3]
+    return render(request, 'reservation/home.html', {'blogs':blogs})
+    
 
 # R 
-def detail(request, reservation_id) : 
-    reservation_detail = get_object_or_404(Reservation, pk= reservation_id) # 특정 객체 가져오기(없으면 404 에러)
-    return render(request, 'reservation/detail.html', {'reservation':reservation_detail})
+def detail(request, blog_id) : 
+    blog_detail = get_object_or_404(Blog, pk= blog_id) # 특정 객체 가져오기(없으면 404 에러)
+    return render(request, 'reservation/detail.html', {'blog':blog_detail})
 
 ########################## U
 def edit(request,reservation_id):

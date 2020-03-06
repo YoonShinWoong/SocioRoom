@@ -31,7 +31,7 @@
         <section id="reserved_mypage">
             <h3>예약 현황</h3>
             {% for reservation in reservation_list %}
-            <div class="reserved_card">
+            <div class="reserved_card" style="margin-bottom: 5em;">
                 <table>
                     <tr>
                         <th>방 정보</th>
@@ -50,13 +50,21 @@
                         <td>{{reservation.room_finish_time}}</td>
                     </tr>
                 </table>
-                <div style="text-align: center; margin-top: 0.5em;"> <a href="{% url 'delete' reservation.id %}"><button id="room_return">반납</button></a> </div>
+                <div style="text-align: center; margin-top: 0.5em;"> <button id="room_return" onclick="confirm_return({{reservation.id}})">반납</button> </div>
             </div>
             {% endfor %}
         </section>
         
     </main>
     <script src="{% static 'reservation/main.js' %}"></script>
+    <script type="text/javascript">
+        function confirm_return(id){
+            var result = confirm("반환하시겠습니까?");
+            if(result){
+                location.href="/reservation/delete/"+id;
+            }
+        }
+    </script>
 </body>
 
 <style>

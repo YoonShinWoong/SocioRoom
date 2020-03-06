@@ -36,7 +36,7 @@ body.sign_bg>main>#sign_inputs{
 }
 body.sign_bg>main>#sign_inputs input{
     display: block;
-    width: 250px;
+    width: 290px;
     line-height: 1.5;
     padding: 5px 20px;
     margin: .8px;
@@ -462,21 +462,4 @@ footer>p{
 footer .copyright{
     font-size: 11px;
     color: rgba(255, 255, 255, .5);
-}
-#room_check{
-    width: 70px;
-    height: 35px;
-    position: absolute;
-    bottom: 15vh;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(218,33,39);
-    font-size: 1em;
-    color: rgb(225,225,225);
-    border: none;
-    border-radius: 3px;
-}
-
-#room_check:hover{
-    cursor: pointer;
 }

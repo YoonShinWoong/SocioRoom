@@ -1,17 +1,73 @@
-<header>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-</header>
-
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>사회과학대학</title>
+    <link rel=icon href="{% static 'reservation/titlelogo.png' %}" sizes="16x16" type="image/png">
+    <link rel="stylesheet" href="{% static 'reservation/main.css'%}">
+</head>
 <body>
-    <div class="container">
-        <h1> {{reservation.room_type}} </h1>
-        <p> 예약날짜  {{reservation.room_date}} </p>
-        <p> 시작시간  {{reservation.room_start_time}} </p>
-        <p> 종료시간  {{reservation.room_finish_time}} </p>
-        <br><br>
-
-        <a href="{% url 'home' %}"><button type="button" class="btn btn-danger">HOME</button></a>
-        <a href="{% url 'edit' reservation.id %}"><button type="button" class="btn btn-danger">EDIT</button></a>
-        <a href="{% url 'delete' reservation.id %}"><button type="button" class="btn btn-danger">DELETE</button></a>
-    </div>
+    <header>
+        <div id="toplogo">
+            <img src="{% static 'reservation/knu_logo.png' %}" alt="경북대학교">
+        </div>
+        <div class="logo">
+            <img src="{% static 'reservation/navBtn.svg' %}" id="nav_btn" onclick="openNav()" alt="메뉴버튼">
+            <h1><a href="{% url 'home' %}">사회과학대학</a></h1>
+        </div>
+        <nav id="mySidenav" class="sidenav">
+            <ul>
+                <a href="javascript:void(0)" class="navCloseBtn" onclick="closeNav()">&times;</a>
+                <a href="#"><li class="navFirst">이름<br>학번 / 과</li></a>
+                <a href="#"><li>예약현황</li></a>
+                <a href="#"><li>로그아웃</li></a>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="reserved_mypage" >
+            <div>
+                <h1> {{blog.title}} </h1>
+                <p> 작성시간 {{blog.pub_date}} </p>
+                <br/>
+                <p> {{blog.body}} </p>
+                <br>
+        
+                <a href="{% url 'home' %}"><button id="return" type="button" class="btn btn-danger">HOME</button></a>
+            </div>
+        </section>
+        
+    </main>
+    <footer>
+        <img src="{% static 'reservation/footer_logo.png' %}" alt="footer_logo" />
+        <span class="contact">
+                <a href="#" target="_blank"><img src="{% static 'reservation/kakao.png' %}" alt="kakao" class="kakao"/></a>
+            <a href="https://www.instagram.com/knu_highlight/?hl=ko" target="_blank"><img src="{% static 'reservation/instagram.png' %}" alt="instagram" class="insta" /></a>
+        </span>
+        <p>사회과학대학 Tel: 053-950-5202~4</p>
+        <p>멋쟁이 사자처럼</p>
+        <p class="copyright">Copyright(c) Kyungpook National University. All rights reserved.</p>
+    </footer>
+    <script src="{% static 'reservation/main.js' %}"></script>
 </body>
+
+<style>
+    #return{
+        width: 70px;
+        height: 35px;
+        bottom: 15vh;
+        background: rgba(218,33,39);
+        font-size: 1em;
+        color: rgb(225,225,225);
+        border: none;
+        border-radius: 3px;
+    }
+    
+    #return:hover{
+        cursor: pointer;
+    }
+    </style>
+</html>

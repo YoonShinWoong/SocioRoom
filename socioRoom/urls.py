@@ -20,7 +20,7 @@ import reservation.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', reservation.views.home, name='home'),
-    path('reservation/<int:reservation_id>', reservation.views.detail, name="detail"),
+    path('blog/<int:blog_id>', reservation.views.detail, name="detail"),
     path('reservation/new/<str:room_type>', reservation.views.new, name="new"),
     path('reservation/check', reservation.views.check, name="check"),
     path('reservation/create', reservation.views.create, name='create'),
