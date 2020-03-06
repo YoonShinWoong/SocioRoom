@@ -1,11 +1,9 @@
 # SocioRoom
 ## KNU_Socio Study room Reservation Service
 환경구성
->>$ pip install django
-
->>$ pip install pillow
-
->>$ pip install django-ckeditor
+>$ pip install django
+>$ pip install pillow
+>$ pip install django-ckeditor
 
 ### 191215 commit
 >CRUD 기반 예약시스템 구현
