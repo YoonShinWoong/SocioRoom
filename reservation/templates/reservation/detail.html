@@ -8,8 +8,10 @@
     <title>사회과학대학</title>
     <link rel=icon href="{% static 'reservation/titlelogo.png' %}" sizes="16x16" type="image/png">
     <link rel="stylesheet" href="{% static 'reservation/main.css'%}">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
 </head>
-<body>
+<body style="font-family:'Nanum Gothic', sans-serif;">
     <header>
         <div id="toplogo">
             <img src="{% static 'reservation/knu_logo.png' %}" alt="경북대학교">
@@ -27,30 +29,25 @@
             </ul>
         </nav>
     </header>
-    <main>
-        <section id="reserved_mypage" >
+    <main style="min-height:90vh;">
+        <section id="detail_page" >
             <div>
                 <h1> {{blog.title}} </h1>
-                <p> 작성시간 {{blog.pub_date}} </p>
                 <br/>
-                <p> {{blog.body}} </p>
+                <p> <span style="font-weight: bold;">작성시간</span> {{blog.pub_date}} </p>
+                <br/>
+                <p >{{blog.description|safe}}</p>
                 <br>
         
+                <a href="{% url 'index' %}"><button id="return" type="button" class="btn btn-danger">LIST</button></a>
                 <a href="{% url 'home' %}"><button id="return" type="button" class="btn btn-danger">HOME</button></a>
+                
+
             </div>
         </section>
         
     </main>
-    <footer>
-        <img src="{% static 'reservation/footer_logo.png' %}" alt="footer_logo" />
-        <span class="contact">
-                <a href="#" target="_blank"><img src="{% static 'reservation/kakao.png' %}" alt="kakao" class="kakao"/></a>
-            <a href="https://www.instagram.com/knu_highlight/?hl=ko" target="_blank"><img src="{% static 'reservation/instagram.png' %}" alt="instagram" class="insta" /></a>
-        </span>
-        <p>사회과학대학 Tel: 053-950-5202~4</p>
-        <p>멋쟁이 사자처럼</p>
-        <p class="copyright">Copyright(c) Kyungpook National University. All rights reserved.</p>
-    </footer>
+    
     <script src="{% static 'reservation/main.js' %}"></script>
 </body>
 
@@ -68,6 +65,10 @@
     
     #return:hover{
         cursor: pointer;
+    }
+    img{
+        max-width:  40vh;
+        max-height: 40vh;
     }
     </style>
 </html>

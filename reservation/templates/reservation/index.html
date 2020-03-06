@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>사회과학대학</title>
+    <link rel=icon href="{% static 'reservation/titlelogo.png' %}" sizes="16x16" type="image/png">
+    <link rel="stylesheet" href="{% static 'reservation/main.css'%}">
+</head>
+<body>
+    <header>
+        <div id="toplogo">
+            <img src="{% static 'reservation/knu_logo.png' %}" alt="경북대학교">
+        </div>
+        <div class="logo">
+            <img src="{% static 'reservation/navBtn.svg' %}" id="nav_btn" onclick="openNav()" alt="메뉴버튼">
+            <h1><a href="{% url 'home' %}">사회과학대학</a></h1>
+        </div>
+        <nav id="mySidenav" class="sidenav">
+            <ul>
+                <a href="javascript:void(0)" class="navCloseBtn" onclick="closeNav()">&times;</a>
+                <a href="#"><li class="navFirst">이름<br>학번 / 과</li></a>
+                <a href="#"><li>예약현황</li></a>
+                <a href="#"><li>로그아웃</li></a>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="reserved_mypage">
+            <h3>스터디룸 공지사항</h3>
+            <div class="reserved_card" style="margin-bottom: 5em;">
+                <table style="border: 1px solid rgba(79,81,81,.5);" >
+                    {% for blog in blogs %}
+                    <tr style="background-color: white; border: 1px solid rgba(79,81,81,.5);">
+                        <th>{{blog.id}} <a href="{% url 'detail' blog.id%}">{{blog}} </a></th>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </section>
+        
+    </main>
+    <script src="{% static 'reservation/main.js' %}"></script>
+    <script type="text/javascript">
+    </script>
+</body>
+
+<style>
+    #room_return{
+        width: 70px;
+        height: 35px;
+        bottom: 15vh;
+        background: rgba(218,33,39);
+        font-size: 1em;
+        color: rgb(225,225,225);
+        border: none;
+        border-radius: 3px;
+    }
+    
+    #room_return:hover{
+        cursor: pointer;
+    }
+    </style>
+</html>

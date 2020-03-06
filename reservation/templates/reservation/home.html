@@ -55,7 +55,7 @@
         </section>
         <section id="main_post">
             <div class="main_notice main_post_item">
-                <h4><a href="#">스터디룸 공지사항</a></h4>
+                <h4><a href="{% url 'index' %}">스터디룸 공지사항</a></h4>
                 <ul>
                     {% for blog in blogs %}
                         <li><a href="{% url 'detail' blog.id %}">{{blog}}</a></li>
@@ -101,6 +101,58 @@
         function goNew3A(){
             location.href="/reservation/new/3A";
         }
+        //chart
+        var pro_1A = {{proportion}}[0];
+        var pro_1B = {{proportion}}[1];
+        var pro_3A = {{proportion}}[2];
+        new Chart(document.getElementById("chart_1"),
+            {
+                "type":"doughnut",
+                "data":{
+                    labels: [
+                        '1A',
+                    ],
+                    "datasets":[
+                        {   
+                            "data":[pro_1A, 12],
+                            "backgroundColor":["rgba(255, 205, 86)","rgba(79, 81, 81, .3)"],
+                            "borderWidth": 0.3
+                        },
+                    ]
+                }
+            });
+        new Chart(document.getElementById("chart_2"),
+            {
+                "type":"doughnut",
+                "data":{
+                    labels: [
+                        '1B',
+                    ],
+                    "datasets":[
+                        {
+                            "data":[pro_1B, 12],
+                            "backgroundColor":["rgba(255, 99, 132)","rgba(79, 81, 81, .3)"],
+                            "borderWidth": 0.3
+                        }
+                    ]
+                }
+            });
+        new Chart(document.getElementById("chart_3"),
+            {
+                "type":"doughnut",
+                "data":{
+                    labels: [
+                        '3A',
+                    ],
+                    "datasets":[
+                        {
+                            "data":[pro_3A, 12],
+                            "backgroundColor":["rgba(54, 162, 235)","rgba(79, 81, 81, .3)"],
+                            "borderWidth": 0.3
+                        }
+                    ]
+                }
+            });
     </script>
 </body>
 </html>

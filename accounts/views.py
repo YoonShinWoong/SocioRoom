@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import Profile
+from django.utils import timezone
+from datetime import datetime, timedelta
+from reservation.models import Reservation, Blog
 from django.contrib import auth
 
 # SMTP 관련 인증
@@ -37,8 +40,22 @@ def signup(request):
             mail_to = request.POST["email"] + "@knu.ac.kr" # 학교 웹메일
             email = EmailMessage(mail_title, message, to=[mail_to])
             email.send()
+            today =  datetime.now()
+            room_1A = Reservation.objects.filter(room_date = today, room_type ='1A')
+            room_1B = Reservation.objects.filter(room_date = today, room_type ='1B')
+            room_3A = Reservation.objects.filter(room_date = today, room_type ='3A')
+            proportion = [0,0,0]
+            for r in room_1A:
+                proportion[0] += (r.room_finish_time - r.room_start_time)
+            for r in room_1B:
+                proportion[1] += (r.room_finish_time - r.room_start_time)
+            for r in room_3A:
+                proportion[2] += (r.room_finish_time - r.room_start_time)
+
+            blog_list = Blog.objects.order_by('-pub_date') # 객체 묶음 가져오기
+            blogs = blog_list[0:3]
             msg = mail_to + " 주소로 인증 메일을 발송하였습니다. " + "인증 후 이용해주세요."
-            return render(request, 'reservation/home.html', {'msg':msg})
+            return render(request, 'reservation/home.html', {'msg':msg, 'blogs':blogs, 'proportion':proportion})
 
     # 포스트 방식 아니면 페이지 띄우기
     return render(request, 'accounts/signup.html')

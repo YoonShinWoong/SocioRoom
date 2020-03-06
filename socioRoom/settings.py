@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'reservation.apps.ReservationConfig', # Reservation App
     'accounts.apps.AccountsConfig', # Account
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +133,10 @@ EMAIL_HOST_USER = 'tlsdnd3421@gmail.com'
 EMAIL_HOST_PASSWORD = 'aktmxj12'
 SERVER_EMAIL = 'tlsdnd3421@gmail.com'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# CKEDITOR
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow" 
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

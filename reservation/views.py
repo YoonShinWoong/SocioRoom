@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 import json
+import time
 
 # library function
 def myrange(start, end, step):
@@ -20,10 +21,6 @@ def new(request,room_type):
     today =  datetime.now()
     today_day = today.weekday()
     weekday_mark = 0
-    # 6 -> +1
-    # 5 -> +2
-    # 4 -> -4
-    # 3 -> -3 
 
     # 평일의 경우
     if today_day < 5:
@@ -130,16 +127,30 @@ def create(request):
 
 ########################## R
 def home(request):
+    today =  datetime.now()
+    room_1A = Reservation.objects.filter(room_date = today, room_type ='1A')
+    room_1B = Reservation.objects.filter(room_date = today, room_type ='1B')
+    room_3A = Reservation.objects.filter(room_date = today, room_type ='3A')
+    proportion = [0,0,0]
+    for r in room_1A:
+        proportion[0] += (r.room_finish_time - r.room_start_time)
+    for r in room_1B:
+        proportion[1] += (r.room_finish_time - r.room_start_time)
+    for r in room_3A:
+        proportion[2] += (r.room_finish_time - r.room_start_time)
+
     blog_list = Blog.objects.order_by('-pub_date') # 객체 묶음 가져오기
     blogs = blog_list[0:3]
-    return render(request, 'reservation/home.html', {'blogs':blogs})
-    
+    return render(request, 'reservation/home.html', {'blogs':blogs, 'proportion':proportion})
 
 # R 
 def detail(request, blog_id) : 
     blog_detail = get_object_or_404(Blog, pk= blog_id) # 특정 객체 가져오기(없으면 404 에러)
     return render(request, 'reservation/detail.html', {'blog':blog_detail})
 
+def index(request):
+    blogs = Blog.objects.order_by('-pub_date')
+    return render(request, 'reservation/index.html', {'blogs':blogs})
 ########################## U
 def edit(request,reservation_id):
     reservation = get_object_or_404(Reservation, pk= reservation_id) # 특정 객체 가져오기(없으면 404 에러)
@@ -170,7 +181,10 @@ def delete(request, reservation_id):
 @login_required
 def myreservation(request):
     today = datetime.now().strftime("%Y-%m-%d") # 오늘날짜
+    now_time = datetime.now()
+    
+    now = now_time.hour + (now_time.minute / 60) 
     reservations = Reservation.objects.all()
-    reservation_list = reservations.filter(user=request.user.username, room_date__gte=today) # 내 예약들
+    reservation_list = reservations.filter(user=request.user.username, room_date__gte=today, room_finish_time__gte=now)
     return render(request, 'reservation/myreservation.html',{'reservation_list':reservation_list}) 
     

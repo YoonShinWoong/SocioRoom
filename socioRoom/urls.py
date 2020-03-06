@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 import reservation.views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,10 +25,12 @@ urlpatterns = [
     path('blog/<int:blog_id>', reservation.views.detail, name="detail"),
     path('reservation/new/<str:room_type>', reservation.views.new, name="new"),
     path('reservation/check', reservation.views.check, name="check"),
+    path('reservation/index', reservation.views.index, name="index"),
     path('reservation/create', reservation.views.create, name='create'),
     path('reservation/edit/<int:reservation_id>', reservation.views.edit, name="edit"),
     path('reservation/update/<int:reservation_id>', reservation.views.update, name="update"),
     path('reservation/delete/<int:reservation_id>', reservation.views.delete, name="delete"),
     path('reservation/my', reservation.views.myreservation, name="myreservation"),
     path('accounts/',include('accounts.urls')), # Accounts
-]
+    path('ckeditor/', include('ckeditor_uploader.urls')), # ckeditor
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
