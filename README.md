@@ -4,6 +4,7 @@
 >>$ pip install django  
 >>$ pip install pillow  
 >>$ pip install django-ckeditor
+>>$ pip install django-crontab
 
 ### 191215 commit
 >CRUD 기반 예약시스템 구현
