@@ -8,10 +8,8 @@
     <title>사회과학대학</title>
     <link rel=icon href="{% static 'reservation/titlelogo.png' %}" sizes="16x16" type="image/png">
     <link rel="stylesheet" href="{% static 'reservation/main.css'%}">
-    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
-
 </head>
-<body style="font-family:'Nanum Gothic', sans-serif;">
+<body>
     <header>
         <div id="toplogo">
             <img src="{% static 'reservation/knu_logo.png' %}" alt="경북대학교">
@@ -23,52 +21,45 @@
         <nav id="mySidenav" class="sidenav">
             <ul>
                 <a href="javascript:void(0)" class="navCloseBtn" onclick="closeNav()">&times;</a>
-                <a href="#"><li class="navFirst">이름<br>학번 / 과</li></a>
-                <a href="#"><li>예약현황</li></a>
-                <a href="#"><li>로그아웃</li></a>
+                {% if user.is_authenticated %}
+                    <a href="#"><li class="navFirst">{{user.profile.realname}}<br>{{user.username}} / {{user.profile.department}}</li></a>
+                    <a href="{% url 'myreservation' %}"><li>예약현황</li></a>
+                    <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}"><li>로그아웃</li></a>
+                    <form id="logout" method="POST" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <input type="hidden"/>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}"><li>로그인</li></a>
+                    <a href="{% url 'signup' %}"><li>회원가입</li></a>
+                {% endif %}
             </ul>
         </nav>
     </header>
-    <main style="min-height:90vh;">
-        <section id="detail_page" >
-            <div>
-                <h1> {{blog.title}} </h1>
-                <br/>
-                <p> <span style="font-weight: bold;">작성시간</span> {{blog.pub_date}} </p>
-                <br/>
-                <p >{{blog.description|safe}}</p>
-                <br>
-        
-                <a href="{% url 'index' %}"><button id="return" type="button" class="btn btn-danger">LIST</button></a>
-                <a href="{% url 'home' %}"><button id="return" type="button" class="btn btn-danger">HOME</button></a>
-                
-
+    <main>
+        <section class="post_container">
+            <h2><a style="color:#000000; text-decoration:none" href="{% url 'index' blog.category %}">{{blog.category}}</a></h2>
+            <div id="notice" class="post">
+                <div class="post_item">
+                    <div class="post_title">
+                        <h3>{{blog.title}}</h3>
+                        <span>{{blog.pub_date}}</span>
+                    </div>
+                    <div class="post_content">
+                        {{blog.description|safe}}
+                    </div>
+                </div>
             </div>
+            <a href="{% url 'index' blog.category %}"><button class="post_btn">목록</button></a>
         </section>
         
     </main>
-    
     <script src="{% static 'reservation/main.js' %}"></script>
 </body>
-
 <style>
-    #return{
-        width: 70px;
-        height: 35px;
-        bottom: 15vh;
-        background: rgba(218,33,39);
-        font-size: 1em;
-        color: rgb(225,225,225);
-        border: none;
-        border-radius: 3px;
-    }
-    
-    #return:hover{
-        cursor: pointer;
-    }
     img{
         max-width:  40vh;
         max-height: 40vh;
     }
-    </style>
+</style>
 </html>

@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'reservation.apps.ReservationConfig', # Reservation App
     'accounts.apps.AccountsConfig', # Account
-    'ckeditor',
-    'ckeditor_uploader',
+    'ckeditor', # text ckeditor
+    'ckeditor_uploader', # text ckeditor
 ]
 
 MIDDLEWARE = [
@@ -137,6 +137,12 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # CKEDITOR
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_IMAGE_BACKEND = "pillow" 
+CKEDITOR_FILENAME_GENERATOR = 'utils.get_filename'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# Crontab
+# CRONJOBS = [
+#     ('*/1 * * * *', 'socioRoom.cron.crontab_job')
+# ]

@@ -244,11 +244,7 @@ main>#main_post>.main_post_item li:hover{
     text-decoration: underline;
     cursor: pointer;
 }
-@media (min-width: 700px){
-    main{
-        height: 68vh;
-    }
-}
+
 @media (max-width: 700px){
     main>#main_post{
         display: block;
@@ -383,7 +379,7 @@ main>#reserved_mypage>.btn_return{
 main>#reserved_mypage>.btn_return:hover{
     cursor: pointer;
 }
-/* post */
+/* main > post */
 main>.post_wrap{
     display: flex;
     width: 75vw;
@@ -430,6 +426,77 @@ main>.post_wrap>.post li:hover{
         margin: 30px auto;
     }
 }
+/* post */
+.post_container{
+    margin-top: 50px;
+}
+.post_container .post{
+    margin-top: 20px;
+    width: 100%;
+    border-top: 2px solid rgba(218,33,39);
+}
+.post_container .post .post_items{
+    display: flex;
+    align-items: center;
+    height: 8vh;
+    position: relative;
+    border-bottom: 1px solid #c5c5c5;
+    color: rgba(79,81,81);
+}
+.post_container .post .post_items:hover{
+    background: #e0e0e0;
+}
+.post_container .post .post_items h3 a{
+    text-decoration: none;
+    color: rgba(79,81,81);
+    font-size: 17px;
+    font-weight: normal;
+}
+.post_items h3:hover{
+    text-decoration: underline;
+}
+.post_container .post .post_items span{
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+    font-size: 14px;
+}
+@media (max-width: 700px){
+    .post_container .post{
+        margin-top: 30px;
+    }
+}
+/* post Item */
+.post_container .post_title{
+    padding: 15px 5px;
+    height: 8vh;
+    position: relative;
+}
+.post_container .post_title span{
+    position: absolute;
+    bottom: 8px;
+    right: 3px;
+}
+.post_container .post_content{
+    padding: 20px 10px 50px;
+    border-top: 1px solid rgb(79, 81, 81);
+    border-bottom: 1.5px solid rgb(79, 81, 81);
+}
+.post_container .post_btn{
+    margin: 20px;
+    float: right;
+    width: 60px;
+    height: 35px;
+    border: none;
+    border-radius: 3px;
+    background: rgba(218,33,39);
+    font-size: 1rem;
+    color: white;
+}
+.post_container .post_btn:hover{
+    cursor: pointer;
+}
+
 /* footer */
 footer{
     width: 100vw;

@@ -21,46 +21,35 @@
         <nav id="mySidenav" class="sidenav">
             <ul>
                 <a href="javascript:void(0)" class="navCloseBtn" onclick="closeNav()">&times;</a>
-                <a href="#"><li class="navFirst">이름<br>학번 / 과</li></a>
-                <a href="#"><li>예약현황</li></a>
-                <a href="#"><li>로그아웃</li></a>
+                {% if user.is_authenticated %}
+                    <a href="#"><li class="navFirst">{{user.profile.realname}}<br>{{user.username}} / {{user.profile.department}}</li></a>
+                    <a href="{% url 'myreservation' %}"><li>예약현황</li></a>
+                    <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}"><li>로그아웃</li></a>
+                    <form id="logout" method="POST" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <input type="hidden"/>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}"><li>로그인</li></a>
+                    <a href="{% url 'signup' %}"><li>회원가입</li></a>
+                {% endif %}
             </ul>
         </nav>
     </header>
     <main>
-        <section id="reserved_mypage">
-            <h3>스터디룸 공지사항</h3>
-            <div class="reserved_card" style="margin-bottom: 5em;">
-                <table style="border: 1px solid rgba(79,81,81,.5);" >
-                    {% for blog in blogs %}
-                    <tr style="background-color: white; border: 1px solid rgba(79,81,81,.5);">
-                        <th>{{blog.id}} <a href="{% url 'detail' blog.id%}">{{blog}} </a></th>
-                    </tr>
-                    {% endfor %}
-                </table>
+        <section class="post_container">
+            <h2>{{category}}</h2>
+            <div id="notice" class="post">
+                {% for blog in blogs %}
+                    <div class="post_items">
+                        <h3><a href="{% url 'detail' blog.id %}">{{blog}}</a></h3>
+                        <span>{{blog.pub_date}}</span>
+                    </div>
+                {% endfor %}
             </div>
         </section>
         
     </main>
     <script src="{% static 'reservation/main.js' %}"></script>
-    <script type="text/javascript">
-    </script>
 </body>
-
-<style>
-    #room_return{
-        width: 70px;
-        height: 35px;
-        bottom: 15vh;
-        background: rgba(218,33,39);
-        font-size: 1em;
-        color: rgb(225,225,225);
-        border: none;
-        border-radius: 3px;
-    }
-    
-    #room_return:hover{
-        cursor: pointer;
-    }
-    </style>
 </html>

@@ -139,18 +139,23 @@ def home(request):
     for r in room_3A:
         proportion[2] += (r.room_finish_time - r.room_start_time)
 
-    blog_list = Blog.objects.order_by('-pub_date') # 객체 묶음 가져오기
-    blogs = blog_list[0:3]
-    return render(request, 'reservation/home.html', {'blogs':blogs, 'proportion':proportion})
+    notice_list = Blog.objects.filter(category="공지사항").order_by('-pub_date') # 공지사항
+    notices = notice_list[0:3]
+
+    lost_list = Blog.objects.filter(category="분실물").order_by('-pub_date') # 공지사항
+    losts = lost_list[0:3]
+
+    return render(request, 'reservation/home.html', {'notices':notices, 'losts':losts,  'proportion':proportion})
 
 # R 
 def detail(request, blog_id) : 
     blog_detail = get_object_or_404(Blog, pk= blog_id) # 특정 객체 가져오기(없으면 404 에러)
     return render(request, 'reservation/detail.html', {'blog':blog_detail})
 
-def index(request):
-    blogs = Blog.objects.order_by('-pub_date')
-    return render(request, 'reservation/index.html', {'blogs':blogs})
+def index(request, category_name):
+    blogs = Blog.objects.filter(category=category_name).order_by('-pub_date')
+    category = category_name
+    return render(request, 'reservation/index.html', {'category':category, 'blogs':blogs})
 ########################## U
 def edit(request,reservation_id):
     reservation = get_object_or_404(Reservation, pk= reservation_id) # 특정 객체 가져오기(없으면 404 에러)

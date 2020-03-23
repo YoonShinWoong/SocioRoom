@@ -55,19 +55,19 @@
         </section>
         <section id="main_post">
             <div class="main_notice main_post_item">
-                <h4><a href="{% url 'index' %}">스터디룸 공지사항</a></h4>
+                <h4><a href="{% url 'index' "공지사항" %}">스터디룸 공지사항</a></h4>
                 <ul>
-                    {% for blog in blogs %}
-                        <li><a href="{% url 'detail' blog.id %}">{{blog}}</a></li>
+                    {% for notice in notices %}
+                        <li><a href="{% url 'detail' notice.id %}">{{notice}}</a></li>
                     {% endfor %}
                 </ul>
             </div>
             <div class="main_board main_post_item">
-                <h4><a href="#">분실물</a></h4>
+                <h4><a href="{% url 'index' "분실물" %}">분실물</a></h4>
                 <ul>
-                    <li><a href="#">아이폰 잃어버리신분</a></li>
-                    <li><a href="#">멀티탭 찾아가세요~</a></li>
-                    <li><a href="#">지갑 찾아요ㅠㅠ</a></li>
+                    {% for lost in losts %}
+                    <li><a href="{% url 'detail' lost.id %}">{{lost}}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
         </section>
