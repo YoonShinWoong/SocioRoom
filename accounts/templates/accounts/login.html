@@ -25,15 +25,23 @@
                 <div>
                     <label for="auto_signin"><input type="checkbox" name="auto_signin" id="auto_signin" ><a style="font-size: 1.1em;">자동로그인</a></label>
                     <a style="font-size:0.2em" ><br/></a>
-                    <a style="color:aliceblue; font-size:0.9em;" href="{% url 'signup' %}">회원가입</a> &nbsp;
-                    <!-- <a style="color:aliceblue; font-size:0.9em;" href="{% url 'login' %}">비밀번호 찾기</a> -->
+                    <a style="color:aliceblue; font-size:0.9em;" href="{% url 'password_reset' %}">비밀번호 찾기</a> &nbsp;
+                    <a style="color:aliceblue; font-size:0.9em;" href="{% url 'signup' %}">회원가입</a> 
                 </div>
             </form>
         </section>
     </main>
+
 </body>
+<script>
+    var msg = "{{msg}}";
+    if(msg != ""){
+        alert(msg);
+    }
+</script>
 <style>
     body.sign_bg>main>#sign_inputs input{
         width:290px;
     }
 </style>
+

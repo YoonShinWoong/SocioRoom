@@ -129,9 +129,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'tlsdnd3421@gmail.com'
-EMAIL_HOST_PASSWORD = 'aktmxj12'
-SERVER_EMAIL = 'tlsdnd3421@gmail.com'
+EMAIL_HOST_USER = 'knussch@gmail.com'
+EMAIL_HOST_PASSWORD = '*dbstkd0053'
+SERVER_EMAIL = 'knussch@gmail.com'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # CKEDITOR
