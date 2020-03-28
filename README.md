@@ -4,7 +4,6 @@
 >>$ pip install django  
 >>$ pip install pillow  
 >>$ pip install django-ckeditor
->>$ pip install django-crontab
 
 ### 191215 commit
 >CRUD 기반 예약시스템 구현
@@ -31,5 +30,5 @@
 ### 200324 commit"
 >기능 보완
 >>비밀번호 찾기 기능
->>서비스 기능 오류 
+>>서비스 기능 오류
 >배포 전 코드 수정완료
