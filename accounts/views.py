@@ -30,7 +30,7 @@ def signup(request):
             mail_to = request.POST["email"] + "@knu.ac.kr" # 학교 웹메일
             
             # 이메일이 있다면 실패
-            if User.objects.filter(email=mail_to) is None:
+            if len(User.objects.filter(email=mail_to)) == 0:
                 user = User.objects.create_user(username=request.POST['username'], email=mail_to, password=request.POST['password1'])
                 user.is_active = False
                 user.save()
