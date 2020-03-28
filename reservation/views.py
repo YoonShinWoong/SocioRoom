@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Reservation, Blog
 from django.utils import timezone
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-import json
-import time
+import json, time
+from django.db.models import Q
 
 # library function
 def myrange(start, end, step):
@@ -185,11 +185,10 @@ def delete(request, reservation_id):
 ########################## MY 예약
 @login_required
 def myreservation(request):
-    today = datetime.now().strftime("%Y-%m-%d") # 오늘날짜
+    today = date.today() # 오늘날짜
     now_time = datetime.now()
-    
     now = now_time.hour + (now_time.minute / 60) 
     reservations = Reservation.objects.all()
-    reservation_list = reservations.filter(user=request.user.username, room_date__gte=today, room_finish_time__gte=now)
+    reservation_list = reservations.filter(Q(user=request.user.username, room_date__gte=today) | Q(user=request.user.username, room_date=today, room_finish_time__gte = now))
     return render(request, 'reservation/myreservation.html',{'reservation_list':reservation_list}) 
     
