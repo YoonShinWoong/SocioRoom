@@ -189,6 +189,6 @@ def myreservation(request):
     now_time = datetime.now()
     now = now_time.hour + (now_time.minute / 60) 
     reservations = Reservation.objects.all()
-    reservation_list = reservations.filter(Q(user=request.user.username, room_date__gte=today) | Q(user=request.user.username, room_date=today, room_finish_time__gte = now))
+    reservation_list = reservations.filter(Q(user=request.user.username, room_date__gt=today) | Q(user=request.user.username, room_date=today, room_finish_time__gte = now))
     return render(request, 'reservation/myreservation.html',{'reservation_list':reservation_list}) 
     

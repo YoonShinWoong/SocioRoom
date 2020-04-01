@@ -20,7 +20,6 @@ from django.core.mail import EmailMessage
 from django.utils.encoding import force_bytes, force_text
 from .tokens import account_activation_token
 
-# Create your views here.
 def signup(request):
     # 포스트 방식으로 들어오면
     if request.method == 'POST':
@@ -69,10 +68,11 @@ def signup(request):
                 msg = mail_to + " 주소로 인증 메일을 발송하였습니다. " + "인증 후 이용해주세요."
                 return render(request, 'reservation/home.html', {'msg':msg, 'notices':notices, 'losts':losts, 'proportion':proportion})
             else:
-                msg = mail_to + "의 이메일로 인증한 학번 게정이 존재합니다. 비밀번호 재설정을 이용해주세요"
+                msg = mail_to + "의 이메일로 인증한 학번 계정이 존재합니다. 비밀번호 재설정을 이용해주세요"
                 return render(request, 'accounts/login.html', {'msg':msg})
     # 포스트 방식 아니면 페이지 띄우기
     return render(request, 'accounts/signup.html')
+
 
 # 메일확인
 def confirm(request):
