@@ -61,7 +61,7 @@
                     <p>시작 시간: 
                         <select name="room_start_time" id="room_start_time" onchange="finishSet()">
                             <option value="선택">선택</option>
-                            <option value="9" disabled>09:00</option>
+                            <option value="9">09:00</option>
                             <option value="9.5">09:30</option>
                             <option value="10">10:00</option>
                             <option value="10.5">10:30</option>
@@ -309,12 +309,13 @@
     </main>
     <footer>
         <img src="{% static 'reservation/footer_logo.png' %}" alt="footer_logo" />
-        <span class="contact">
-                <a href="#" target="_blank"><img src="{% static 'reservation/kakao.png' %}" alt="kakao" class="kakao"/></a>
-            <a href="https://www.instagram.com/knu_highlight/?hl=ko" target="_blank"><img src="{% static 'reservation/instagram.png' %}" alt="instagram" class="insta" /></a>
+        <span class="contact" style="font-size:x-large; color:inherit ;">
+                <a href="https://pf.kakao.com/_JdHwxb" target="_blank" style="color:white;"><i class="far fa-comment"></i></a>
+                <a href="https://www.instagram.com/knu_highlight/?hl=ko" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/knussc/" target="_blank" style="color:white;"><i class="fab fa-facebook-square"></i></a>
         </span>
         <p>사회과학대학 Tel: 053-950-5202~4</p>
-        <p>멋쟁이 사자처럼</p>
+        <p>멋쟁이 사자처럼 <span style="font-size: x-small;"><a target="_blank" style="color:white; text-decoration: none;" href="https://yoonshinwoong.github.io/">윤신웅</a> <a target="_blank" style="color:white; text-decoration: none;"href="https://github.com/yeonjudkwl">홍연주</a></span></p>
         <p class="copyright">Copyright(c) Kyungpook National University. All rights reserved.</p>
     </footer>
     <script src="{% static 'reservation/main.js' %}"></script>

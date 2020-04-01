@@ -63,7 +63,7 @@
                 </ul>
             </div>
             <div class="main_board main_post_item">
-                <h4><a href="{% url 'index' "분실물" %}">분실물</a></h4>
+                <h4><a href="{% url 'index' "분실물" %}">스터디룸 분실물</a></h4>
                 <ul>
                     {% for lost in losts %}
                     <li><a href="{% url 'detail' lost.id %}">{{lost}}</a></li>
@@ -72,7 +72,7 @@
             </div>
         </section>
     </main>
-    <footer>
+    <footer style="position: fixed;">
         <img src="{% static 'reservation/footer_logo.png' %}" alt="footer_logo" />
         <span class="contact" style="font-size:x-large; color:inherit ;">
                 <a href="https://pf.kakao.com/_JdHwxb" target="_blank" style="color:white;"><i class="far fa-comment"></i></a>
