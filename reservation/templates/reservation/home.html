@@ -1,4 +1,4 @@
-{% load static %}
+﻿{% load static %}
 
 <head>
     <meta charset="UTF-8">
@@ -72,7 +72,7 @@
             </div>
         </section>
     </main>
-    <footer style="position: fixed;">
+    <footer>
         <img src="{% static 'reservation/footer_logo.png' %}" alt="footer_logo" />
         <span class="contact" style="font-size:x-large; color:inherit ;">
                 <a href="https://pf.kakao.com/_JdHwxb" target="_blank" style="color:white;"><i class="far fa-comment"></i></a>
@@ -157,3 +157,10 @@
     </script>
 </body>
 </html>
+<style>
+@media only screen and (min-height: 672px) {
+    footer{
+        position: fixed;
+    }
+}
+</style>
